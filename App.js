@@ -5,8 +5,13 @@ import {
   Text,
   Button,
   View,
-  Image
+  Image,
+  StatusBar
 } from 'react-native';
+
+
+import Topo from './src/components/topo';
+import Icone from  './src/components/icone';
 
 const styles = StyleSheet.create({
   btnEscolha: {
@@ -117,30 +122,36 @@ const styles = StyleSheet.create({
               return (
                 <View>
 
-                <Topo ></Topo>
-
-                <View style={styles.painelAcoes}>
-                  <View style={styles.btnEscolha}>
-                    <Button title="Pedra" onPress={ () => { this.jokenpo('pedra')}} />
+                  <View>
+                    <StatusBar
+                      hidden = {true}
+                      />
                   </View>
-                  <View style={styles.btnEscolha}>
-                    <Button title="Papel" onPress={ () => { this.jokenpo('papel')}} />
+
+                  <Topo ></Topo>
+
+                  <View style={styles.painelAcoes}>
+                    <View style={styles.btnEscolha}>
+                      <Button title="Pedra" onPress={ () => { this.jokenpo('pedra')}} />
+                    </View>
+                    <View style={styles.btnEscolha}>
+                      <Button title="Papel" onPress={ () => { this.jokenpo('papel')}} />
+                    </View>
+                    <View style={styles.btnEscolha}>
+                      <Button title="Tesoura" onPress={ () => { this.jokenpo('tesoura')}} />
+                    </View>
                   </View>
-                  <View style={styles.btnEscolha}>
-                    <Button title="Tesoura" onPress={ () => { this.jokenpo('tesoura')}} />
+
+
+                  <View style={styles.painelAcoes}>
+                      <Text style={styles.txtResultado}>{this.state.resultado}</Text>
+
+                      <Icone escolha={this.state.escolhaComputador} jogador='Computador'></Icone>
+
+                      <Icone escolha={this.state.escolhaUsuario} jogador='Você'></Icone>
+
+
                   </View>
-                </View>
-
-
-                <View style={styles.painelAcoes}>
-                    <Text style={styles.txtResultado}>{this.state.resultado}</Text>
-
-                    <Icone escolha={this.state.escolhaComputador} jogador='Computador'></Icone>
-
-                    <Icone escolha={this.state.escolhaUsuario} jogador='Você'></Icone>
-
-
-                </View>
 
 
 
@@ -148,59 +159,6 @@ const styles = StyleSheet.create({
               );
             }
           }
-
-
-class Topo extends Component {
-  render(){
-    return(
-    <View style={{alignItems: 'center'}}>
-        <Image source={require('./imgs/4all.jpg')} style={{width: 300, height: 300}}/>
-    </View>
-  );
-  }
-}
-
-class Icone extends Component{
-  render(){
-
-    //this.props.escolha
-    //this.props.jogador
-
-    if(this.props.escolha == 'pedra'){
-
-      return (
-        <View style={styles.icone}>
-          <Text style={styles.txtJogador}>{this.props.jogador}</Text>
-          <Image source={require('./imgs/pedra.png')} />
-        </View>
-      );
-
-    } else if(this.props.escolha == 'papel'){
-      return (
-        <View style={styles.icone}>
-          <Text style={styles.txtJogador}>{this.props.jogador}</Text>
-          <Image source={require('./imgs/papel.png')} />
-        </View>
-      );
-
-    } else if(this.props.escolha == 'tesoura'){
-      return (
-        <View style={styles.icone}>
-          <Text style={styles.txtJogador}>{this.props.jogador}</Text>
-          <Image source={require('./imgs/tesoura.png')} />
-        </View>
-      );
-
-    } else {
-      return false;
-    }
-
-  }
-}
-
-
-
-
 
 
 AppRegistry.registerComponent('final', () => app3);
