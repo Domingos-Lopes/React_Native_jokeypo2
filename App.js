@@ -4,44 +4,10 @@ import {
   StyleSheet,
   View
 } from 'react-native';
-
 import { Navigator } from 'react-native-deprecated-custom-components';
 
 import CenaPrincipal from  './src/components/cenaPrincipal';
 import CenaJokeypo from './src/components/cenaJokeypo';
-
-/*
-const styles = StyleSheet.create({
-  btnEscolha: {
-    width: 90
-  },
-  painelAcoes: {
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    marginTop: 10,
-    alignItems: 'center'
-  },
-  palco: {
-    alignItems: 'center',
-    marginTop: 10
-  },
-  txtResultado: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: 'green',
-    height: 60
-  },
-  icone: {
-    alignItems: 'center',
-    marginBottom: 20
-  },
-  txtJogador: {
-    fontSize: 18
-  }
-
-});
-
-*/
 
 /* Navegação entre telas:
 Uma vez que possuimos duas telas na aplicação, é fundamental implementar o componente navigator, o qual possibilita a troca de telas. Esee componente precisa
@@ -51,27 +17,27 @@ Esse componente possui duas propriedades importantes :
 a primeira renderização da navegação
 * renderScene: se espera uma função de callback com os parâmetros route e navigator e com base nesses parametros definimos uma lógica para exibir as telas.
 
-Como definido anteriormente, quando for chamado a propriedade da rota id: a, será renderizado a CenaPrincipal e id: b para CenaJokeypo. O objeto route poss
-
-
-
-
-
+Como definido anteriormente, quando for chamado a propriedade da rota id: a, será renderizado a CenaPrincipal e id: b para CenaJokeypo. Além disso, o componente
+Navigator pussui duas funçõs:
+* push: insere um valor no topo da pilha
+* pop: remove um valor do topo da pilha
+A ideia por tréa do navigator consiste em uma pilha de cenas, na qual empilhamos e removemos conforme as decisões do usuário
 */
 
  export default class app3 extends Component {
-
           render(){
               return (
                 <Navigator
                   initialRoute={{ id: 'a'} }
                   renderScene={(route, navigator) => {
                     // definir a cena com base na rotas propriedade id
+                    // é retornado junto com a cena a propriedade navigator, para que possa ser utilizado nos demais componentes
 
                     if (route.id === 'a') {
                       return(<CenaPrincipal navigator={navigator} />);
                     }
 
+                    // retornado como props o navigator que vai para o componente cenaJokeypo e depois vai para a barardeNavegação
                     if (route.id === 'b')
                       return(<CenaJokeypo navigator={navigator} />);
                   }}
@@ -79,7 +45,5 @@ Como definido anteriormente, quando for chamado a propriedade da rota id: a, ser
               );
             }
           }
-
-
 
 AppRegistry.registerComponent('final', () => app3);

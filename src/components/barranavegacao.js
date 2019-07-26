@@ -31,6 +31,12 @@ const styles = StyleSheet.create({
 
 const btnVoltar = require('../../imgs/btn_voltar.png');
 
+/*
+Classe BarraDeNavegação disponibiliza o usuário a volta da cenaJokeypo para a tela Main.
+
+utiliza-se a função pop para retirar do topo da pilha a CenaJokeypo
+*/
+
 export default class BarraNavegacao extends Component {
   render() {
 

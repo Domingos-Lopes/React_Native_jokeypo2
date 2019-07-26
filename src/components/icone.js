@@ -9,11 +9,12 @@ import {
 } from 'react-native';
 
 
+/*
+Classe Icone renderiza os icones de pedra papel ou tesoura conforme a escolha do usuário na função jokeypo
+*/
+
 class Icone extends Component{
   render(){
-
-    //this.props.escolha
-    //this.props.jogador
 
     if(this.props.escolha == 'pedra'){
 

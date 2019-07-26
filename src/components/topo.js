@@ -8,12 +8,13 @@ import {
 
 const styles = StyleSheet.create({
   imagem: {
-    marginTop: 20,
     width: 250,
     height: 250
   }
 })
 
+
+// Classe Topo renderiza o logo 4all 
 
 class Topo extends Component {
   render(){

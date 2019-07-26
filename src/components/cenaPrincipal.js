@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
   StyleSheet,
   Text,
-  Button,
   View,
   Image,
-  StatusBar,
   TouchableHighlight
 } from 'react-native';
 
@@ -38,22 +35,29 @@ export default class CenaPrincipal extends Component {
   render() {
     return(
       <View>
-
         <BarraNavegacao/>
-        <Topo></Topo>
-          <View style={{alignItems: 'center'}}>
+        <View style={{marginTop: 70}}>
+            <Topo></Topo>
+        </View>
+
+        <View style={{alignItems: 'center'}}>
           <Text style={styles.txt}t>Jokeypo 4all! </Text>
         </View>
 
         <View style={{alignItems: 'center', marginTop: 40}}>
-          <TouchableHighlight onPress={() => { this.props.navigator.push({id: 'b'});
-        }}
-          >
+          <TouchableHighlight onPress={() => { this.props.navigator.push({id: 'b'}); }}>
             <Image source={conflict} style={{width: 200, height: 200 }}/>
           </TouchableHighlight>
             <Text style={styles.txtBriga}>FIGHT!</Text>
         </View>
+
       </View>
     );
   }
 }
+
+/*
+A função onPress é o meio pelo qual o usuário define a intençnao de ir a próxima cena. No momento em que o componente dentro
+do TouchableHighlight for acionado executará uma função de callback(push) a qual coloca a CenaJokeypo acima da tela Main por meio do
+parametro de instrução de rota id b. Como o comoponente navigator não faz parte da Cena Principal passamos como propos no App.js.
+*/

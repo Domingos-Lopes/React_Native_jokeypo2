@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
   StyleSheet,
   Text,
   Button,
-  View,
-  Image,
-  StatusBar
+  View
 } from 'react-native';
 
 import BarraNavegacao from './barranavegacao';
@@ -44,6 +41,17 @@ const styles = StyleSheet.create({
 
 });
 
+/*
+em React existem dois tipos de dados que servem para controlar ou customizar
+componentes são eles props e states.
+* Componente: Peças idenpendentes entre si para formar UI. Componentes podem
+ser customizados, isso pode ser estabelecido por meio de parametros. nesses
+parametros são chamados de props
+* Props: parametros dos Componentes estáticos
+* State: estrtura de dados com caracteristicas dos componentes que podem ser
+alteradas durante a aplicação
+
+*/
 
 export default class CenaJokeypo extends Component {
   constructor(props){
@@ -143,7 +151,6 @@ export default class CenaJokeypo extends Component {
           <Text style={styles.txtResultado}>{this.state.resultado}</Text>
 
           <Icone escolha={this.state.escolhaComputador} jogador='Computador'></Icone>
-
           <Icone escolha={this.state.escolhaUsuario} jogador='Você'></Icone>
 
 
