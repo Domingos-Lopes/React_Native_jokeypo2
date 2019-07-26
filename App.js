@@ -2,17 +2,15 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  Text,
-  Button,
-  View,
-  Image,
-  StatusBar
+  View
 } from 'react-native';
 
+import { Navigator } from 'react-native-deprecated-custom-components';
 
-import Topo from './src/components/topo';
-import Icone from  './src/components/icone';
+import CenaPrincipal from  './src/components/cenaPrincipal';
+import CenaJokeypo from './src/components/cenaJokeypo';
 
+/*
 const styles = StyleSheet.create({
   btnEscolha: {
     width: 90
@@ -40,125 +38,48 @@ const styles = StyleSheet.create({
   txtJogador: {
     fontSize: 18
   }
+
 });
 
+*/
 
+/* Navegação entre telas:
+Uma vez que possuimos duas telas na aplicação, é fundamental implementar o componente navigator, o qual possibilita a troca de telas. Esee componente precisa
+ser o primeiro a ser renderizado na aplicação, a partir dele haverá rotas. Para tal, importamos as duas telas (CenaPrincipal e CenaJokeypo) para o arquivo App.js.
+Esse componente possui duas propriedades importantes :
+*initialRoute, o qual se espera um objeto literal (JSON) que corresponda a um objeto de rota  - Cena Principal possui a id: A/ CenaJokeypo possui id: b. Define
+a primeira renderização da navegação
+* renderScene: se espera uma função de callback com os parâmetros route e navigator e com base nesses parametros definimos uma lógica para exibir as telas.
+
+Como definido anteriormente, quando for chamado a propriedade da rota id: a, será renderizado a CenaPrincipal e id: b para CenaJokeypo. O objeto route poss
+
+
+
+
+
+*/
 
  export default class app3 extends Component {
 
-   constructor(props){
-         super(props);
-
-         this.state = {  escolhaUsuario : '',
-                         escolhaComputador : '',
-                         resultado : ''
-                       }
-       }
-       jokenpo(escolhaUsuario){
-
-            //gera número aleatório ( 0, 1, 2)
-            var numAleatorio = Math.floor(Math.random() * 3);
-
-            var escolhaComputador = '';
-
-            switch(numAleatorio){
-              case 0: escolhaComputador = 'pedra'; break;
-              case 1: escolhaComputador = 'papel'; break;
-              case 2: escolhaComputador = 'tesoura'; break;
-            }
-
-            var resultado = '';
-
-            if(escolhaComputador == 'pedra'){
-              if(escolhaUsuario == 'pedra'){
-                resultado = 'Empate';
-              }
-
-              if(escolhaUsuario == 'papel'){
-                resultado = 'Você Ganhou! Parabéns';
-              }
-
-              if(escolhaUsuario == 'tesoura'){
-                resultado = 'Perdeu! Mais sorte na próxima';
-              }
-            }
-
-            if(escolhaComputador == 'papel'){
-              if(escolhaUsuario == 'papel'){
-                resultado = 'Empate';
-              }
-
-              if(escolhaUsuario == 'tesoura'){
-                resultado = 'Você Ganhou! Parabéns';
-              }
-
-              if(escolhaUsuario == 'pedra'){
-                resultado = 'Perdeu! Mais sorte na próxima';
-              }
-            }
-
-            if(escolhaComputador == 'tesoura'){
-              if(escolhaUsuario == 'tesoura'){
-                resultado = 'Empate';
-              }
-
-              if(escolhaUsuario == 'pedra'){
-                resultado = 'Você Ganhou! Parabéns';
-              }
-
-              if(escolhaUsuario == 'papel'){
-                resultado = 'Perdeu! Mais sorte na próxima';
-              }
-            }
-
-            this.setState({ escolhaUsuario : escolhaUsuario,
-                            escolhaComputador : escolhaComputador,
-                            resultado : resultado
-                          });
-
-
-          }
           render(){
               return (
-                <View>
+                <Navigator
+                  initialRoute={{ id: 'a'} }
+                  renderScene={(route, navigator) => {
+                    // definir a cena com base na rotas propriedade id
 
-                  <View>
-                    <StatusBar
-                      hidden = {true}
-                      />
-                  </View>
+                    if (route.id === 'a') {
+                      return(<CenaPrincipal navigator={navigator} />);
+                    }
 
-                  <Topo ></Topo>
-
-                  <View style={styles.painelAcoes}>
-                    <View style={styles.btnEscolha}>
-                      <Button title="Pedra" onPress={ () => { this.jokenpo('pedra')}} />
-                    </View>
-                    <View style={styles.btnEscolha}>
-                      <Button title="Papel" onPress={ () => { this.jokenpo('papel')}} />
-                    </View>
-                    <View style={styles.btnEscolha}>
-                      <Button title="Tesoura" onPress={ () => { this.jokenpo('tesoura')}} />
-                    </View>
-                  </View>
-
-
-                  <View style={styles.painelAcoes}>
-                      <Text style={styles.txtResultado}>{this.state.resultado}</Text>
-
-                      <Icone escolha={this.state.escolhaComputador} jogador='Computador'></Icone>
-
-                      <Icone escolha={this.state.escolhaUsuario} jogador='Você'></Icone>
-
-
-                  </View>
-
-
-
-                </View>
+                    if (route.id === 'b')
+                      return(<CenaJokeypo navigator={navigator} />);
+                  }}
+                />
               );
             }
           }
+
 
 
 AppRegistry.registerComponent('final', () => app3);

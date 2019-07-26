@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import {
+  AppRegistry,
+  StyleSheet,
   Text,
+  Button,
   View,
   Image,
-  StyleSheet
 } from 'react-native';
 
 
@@ -52,7 +54,6 @@ const styles = StyleSheet.create({
   painelAcoes: {
     flexDirection: 'column',
     justifyContent: 'space-between',
-    marginTop: 10,
     alignItems: 'center'
   },
   palco: {
